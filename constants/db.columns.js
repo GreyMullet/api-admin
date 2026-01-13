@@ -1,4 +1,4 @@
-export const HOTEL_FIELDS=[
+const HOTEL_FIELDS=[
     "id",
     "hash_code",
     "hotel_id",
@@ -15,7 +15,7 @@ export const HOTEL_FIELDS=[
     "description"
 ]
 
-export const BANK_FIELDS=[
+const BANK_FIELDS=[
     'id',
     'hash_code',
     'bank_name',
@@ -25,3 +25,4 @@ export const BANK_FIELDS=[
     'created_at'
 ]
   
+module.exports={ HOTEL_FIELDS, BANK_FIELDS }

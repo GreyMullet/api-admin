@@ -13,9 +13,8 @@ const { addAccount }=require('./controllers/add.equiring.controller')
 const { addMail }=require('./controllers/add.mail.controller')
 const { fetchBanks }=require('./controllers/banks.params.controller')
 const cookieParser=require("cookie-parser")
-const { HOTEL_FIELDS }=require('./constants/db.columns.js')
-const { BANK_FIELDS }=require('./constants/db.columns.js')
 const { updateBank }=require('./controllers/bank.update.js')
+const { HOTEL_FIELDS, BANK_FIELDS }=require('./constants/db.columns.js')
 
 const PORT=process.env.PORT || 3000
 
@@ -23,7 +22,7 @@ const app=express()
 
 app.use(express.json())
 app.use(cors({
-    origin: "http://localhost:5173", 
+    origin: "https://cb08796.tw1.ru", 
     credentials: true
 }))
 app.use(cookieParser())
