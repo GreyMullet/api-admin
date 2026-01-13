@@ -1,6 +1,6 @@
 const baseUri="/api"
 
-export const ROUTES={
+const ROUTES={
     "sign-in": `${baseUri}/sign-in`,
     "fetch-hotel-params": `${baseUri}/fetch-hotel-params`,
     "fetch-banks-params": `${baseUri}/fetch-banks-params`,
@@ -10,3 +10,5 @@ export const ROUTES={
     "add-equiring": `${baseUri}/add-equiring`,
     "add-mail": `${baseUri}/add-mail`
 }
+
+module.exports={ ROUTES }
