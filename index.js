@@ -12,9 +12,11 @@ const { addParamsHotel }=require('./controllers/add.hotel.controller')
 const { addAccount }=require('./controllers/add.equiring.controller')
 const { addMail }=require('./controllers/add.mail.controller')
 const { fetchBanks }=require('./controllers/banks.params.controller')
-const cookieParser=require("cookie-parser")
 const { updateBank }=require('./controllers/bank.update.js')
-const { HOTEL_FIELDS, BANK_FIELDS }=require('./constants/db.columns.js')
+const { HOTEL_FIELDS, BANK_FIELDS, MAIL_FIELDS }=require('./constants/db.columns.js')
+const { fetchMails }=require('./controllers/mails.params.controller.js')
+const cookieParser=require("cookie-parser")
+const { updateMail } = require('./controllers/mail.update.js')
 
 const PORT=process.env.PORT || 3000
 
@@ -22,7 +24,7 @@ const app=express()
 
 app.use(express.json())
 app.use(cors({
-    origin: "https://cb08796.tw1.ru", 
+    origin: "http://localhost:5173", 
     credentials: true
 }))
 app.use(cookieParser())
@@ -54,19 +56,33 @@ app.get(ROUTES["fetch-banks-params"], checkToken, async (_, res)=>{
     }
 })
 
-// 4. Updating hotel params
+// 4. Fetching of mail params
+app.get(ROUTES["fetch-mails-params"], async (_, res)=>{
+    try{
+        const mail=await fetchMails()
+        res.status(200).json(mail)
+    } catch (err){
+        console.error(err)
+        res.status(500).json({ error: "DB error" })
+    }
+})
+
+// 5. Updating hotel params
 app.patch(ROUTES["update-hotel"], checkToken, checkParamsUpdateHotel, checkColumnsDB(HOTEL_FIELDS), updateHotel)
 
-// 5. updating bank params
+// 6. updating bank params
 app.patch(ROUTES["update-bank"], checkToken, checkParamsUpdateHotel, checkColumnsDB(BANK_FIELDS), updateBank)
 
-// 6. Add hotel params
+// 6. updating mail params
+app.patch(ROUTES["update-mail"], checkToken, checkParamsUpdateHotel, checkColumnsDB(MAIL_FIELDS), updateMail)
+
+// 7. Add hotel params
 app.post(ROUTES["add-hotel"], checkToken, addParamsHotel)
 
-// 7. Add equiring
+// 8. Add equiring
 app.post(ROUTES["add-equiring"], checkToken, addAccount)
 
-// 8. Add mail
+// 9. Add mail
 app.post(ROUTES["add-mail"], checkToken, addMail)
 
 // ------------------------- END ROUTES -------------------------------
