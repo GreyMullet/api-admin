@@ -24,7 +24,7 @@ const app=express()
 
 app.use(express.json())
 app.use(cors({
-    origin: "http://adminka.roomfox.ru/", 
+    origin: "https://cb08796.tw1.ru", 
     credentials: true
 }))
 app.use(cookieParser())
