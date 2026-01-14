@@ -16,7 +16,7 @@ const { updateBank }=require('./controllers/bank.update.js')
 const { HOTEL_FIELDS, BANK_FIELDS, MAIL_FIELDS }=require('./constants/db.columns.js')
 const { fetchMails }=require('./controllers/mails.params.controller.js')
 const cookieParser=require("cookie-parser")
-const { updateMail } = require('./controllers/mail.update.js')
+const { updateMail }=require('./controllers/mail.update.js')
 
 const PORT=process.env.PORT || 3000
 
@@ -24,7 +24,7 @@ const app=express()
 
 app.use(express.json())
 app.use(cors({
-    origin: "http://localhost:5173", 
+    origin: "http://adminka.roomfox.ru/", 
     credentials: true
 }))
 app.use(cookieParser())
