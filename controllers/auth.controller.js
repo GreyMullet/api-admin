@@ -16,7 +16,7 @@ function jwtCreate(req, res){
     try{
         res.cookie("jwt", token, {
             httpOnly: true,
-            secure: false, // в проде true
+            secure: true, 
             sameSite: "lax",
             maxAge: 1000*60*60
         })
